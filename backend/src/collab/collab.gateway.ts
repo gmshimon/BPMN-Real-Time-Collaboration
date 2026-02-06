@@ -25,7 +25,9 @@ export class CollabGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleConnection(client: Socket) {
     // Add user with a default name (can be overwritten by presence:join)
     const fallbackName = `User-${client.id.slice(-4)}`;
-    this.logger.log(`Client connected: ${client.id}; assigned name ${fallbackName}`);
+    this.logger.log(
+      `Client connected: ${client.id}; assigned name ${fallbackName}`,
+    );
     this.collab.addUser(client.id, fallbackName);
 
     this.broadcastPresence();
@@ -54,7 +56,9 @@ export class CollabGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     // send current diagram immediately to the joining client
     const state = this.collab.getDiagram();
-    this.logger.debug(`Sending diagram:sync to ${client.id}; version=${state.version}`);
+    this.logger.debug(
+      `Sending diagram:sync to ${client.id}; version=${state.version}`,
+    );
     client.emit('diagram:sync', state);
   }
 
@@ -73,7 +77,9 @@ export class CollabGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     this.logger.log(`diagram:update received from ${client.id}`);
     const next = this.collab.updateDiagram(body.xml);
-    this.logger.log(`diagram:update stored; version=${next.version}; sender=${client.id}`);
+    this.logger.log(
+      `diagram:update stored; version=${next.version}; sender=${client.id}`,
+    );
 
     // broadcast to everyone else (avoid echo to sender)
     client.broadcast.emit('diagram:sync', next);
@@ -103,7 +109,9 @@ export class CollabGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   private broadcastPresence() {
     const userCount = this.collab.getUsers().length;
-    this.logger.debug(`broadcasting presence:update to all; users=${userCount}`);
+    this.logger.debug(
+      `broadcasting presence:update to all; users=${userCount}`,
+    );
     this.server.emit('presence:update', { users: this.collab.getUsers() });
   }
 

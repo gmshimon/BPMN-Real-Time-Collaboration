@@ -24,7 +24,7 @@ type ModelerApi = {
 export default function Home() {
   const exportXmlRef = useRef<null | (() => Promise<string>)>(null);
   const { diagram, users, sendDiagramUpdate } = useCollabSocket();
-  console.log(users);
+
   const handleModelerReady = useCallback((api: ModelerApi) => {
     exportXmlRef.current = api.exportXml;
   }, []);

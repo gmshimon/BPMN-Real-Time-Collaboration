@@ -47,7 +47,6 @@ export class CollabService {
   }
 
   getUsers(): User[] {
-    console.log('Getting users:', Array.from(this.users.values()));
     return Array.from(this.users.values());
   }
 
@@ -62,7 +61,7 @@ export class CollabService {
     return { xml: this.diagramXml, version: this.version };
   }
 
-   // Locks
+  // Locks
   setLock(elementId: string, socketId: string) {
     // if locked by someone else, ignore (or return false)
     const current = this.locks.get(elementId);

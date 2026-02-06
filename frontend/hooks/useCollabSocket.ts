@@ -43,6 +43,7 @@ export function useCollabSocket() {
     socket.on("diagram:sync", handleDiagram)
     socket.on("connect", announcePresence)
 
+    //Only happen once per mount
     if (!joinedRef.current) {
       joinedRef.current = true
       announcePresence()
