@@ -3,6 +3,6 @@ import { CollabGateway } from './collab.gateway';
 import { CollabService } from './collab.service';
 
 @Module({
-  providers: [CollabGateway, CollabService]
+  providers: [CollabGateway, CollabService],
 })
 export class CollabModule {}
