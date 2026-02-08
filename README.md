@@ -16,14 +16,14 @@ Prerequisites: Node 20+, npm.
 ```bash
 cd backend
 npm install
-PORT=4000 npm run start:dev
+npm run start:dev
 ```
 
 ### Frontend (Next.js)
 ```bash
 cd frontend
 npm install
-NEXT_PUBLIC_SOCKET_URL=http://localhost:4000 npm run dev
+npm run dev
 # open http://localhost:3000
 ```
 
